@@ -1,0 +1,32 @@
+##########################服务器相关##########################
+server:
+  port:                          #端口号
+  servlet:
+    context-path:                #项目名 不配置的为/，地址栏访问不需要输入项目名 localhost:port/资源 如果需要配置，例如   /seven
+    jsp:
+      init-parameters:
+        development: true        #JSP热部署，修改jsp或导入js文件后不需要重启项目，刷新即可
+##########################spring相关##########################
+spring:
+  datasource:
+    username:                    #数据库的用户名
+    password:                    #数据库的密码
+    driver-class-name: com.mysql.jdbc.Driver     #数据库驱动  oracle: oracle.jdbc.driver.OracleDriver
+    url: jdbc:mysql://localhost:3306/数据库名称  #            oracle: jdbc:oracle:thin:@ip:1521:版本
+    type: com.alibaba.druid.pool.DruidDataSource #数据源 用阿里的
+  http:
+    encoding:
+      charset: UTF-8              #请求编码
+      force: true                 #响应编码   true就是和请求编码一致
+  servlet:
+    multipart:
+      max-file-size: 10MB         #默认 单个文件大小为 1MB
+      max-request-size: 200MB     #默认 多个文件同时上传大小为 10MB
+#  mvc:                           #视图解析器 在controller return的时候，可以只写资源名称，这样就自动补齐了例如 return "index"; 那么就会跳转到index.jsp  不过我不喜欢用
+#    view:
+#      prefix: /                  #前缀
+#      suffix: .jsp               #后缀
+##########################mybatis相关##########################
+mybatis:
+  mapper-locations: classpath:com/baizhi/mapper/*Mapper.xml              #扫描mapper文件
+  type-aliases-package: com.baizhi.entity                                #实体类写别名，在mapper文件中可以用实体类小写字母开头当做全限定名
